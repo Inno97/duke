@@ -9,6 +9,8 @@
 import java.io.*;
 import java.util.*;
 
+import tasks.*;
+
 public class Duke {
     public static void main(String[] args) {
         //welcome screen
@@ -31,7 +33,9 @@ public class Duke {
         String command; //if applicable, split into command and parameter
         String inputParams;
 
-        ArrayList<String> taskList = new ArrayList<String>(0);
+        ArrayList<task> taskList = new ArrayList<task>(0);
+        //ArrayList<String> taskList = new ArrayList<String>(0);
+        //ArrayList<Boolean> taskStatusList = new ArrayList<Boolean>(0);
         int numTasks = 0;
 
         //duke level 1-3: mark as done
@@ -56,33 +60,30 @@ public class Duke {
                 case "list": //list all tasks in duke
                         System.out.println("--------------------------------------------------");
                         for (int i = 0; i < numTasks; i++) {
-                            System.out.println((i + 1) + ". " + taskList.get(i));
+                            System.out.print((i + 1) + ".[" + taskList.get(i).getStatusIcon() + "] ");
+                            System.out.println(taskList.get(i).getDescription());
                         }
                         System.out.println("--------------------------------------------------");
 
                     break;
 
-                case "done": //remove task
+                case "done": //mark as done
                     if (!inputParams.equals("")) {
                         if ((Integer.parseInt(inputParams)) <= numTasks) {
-                            String taskToPrint = taskList.get((Integer.parseInt(inputParams)) - 1);
-                            taskList.remove(Integer.parseInt(inputParams) - 1);
-                            numTasks--;
+                            taskList.get(Integer.parseInt(inputParams) - 1).markDone();
 
                             System.out.println("--------------------------------------------------");
                             System.out.println("Nice! I've marked this task as done:");
-                            System.out.println("[✓] " + taskToPrint);
+                            System.out.println("[✓] " + taskList.get(Integer.parseInt(inputParams) - 1).getDescription());
                             System.out.println("--------------------------------------------------");
                         } else { //factor in OOB
                             System.out.println("--------------------------------------------------");
                             System.out.println("Task does not exist.");
                             System.out.println("--------------------------------------------------");
 
-
                         }
-
                     } else { //empty query, we simply treat this as adding task for now
-                        taskList.add(input);
+                        taskList.add(new task(input));
                         numTasks++;
 
                         System.out.println("--------------------------------------------------");
@@ -101,7 +102,7 @@ public class Duke {
 
                 default: //add to task list and echo
                     if (!input.equals("")) {
-                        taskList.add(input);
+                        taskList.add(new task(input));
                         numTasks++;
 
                         System.out.println("--------------------------------------------------");
