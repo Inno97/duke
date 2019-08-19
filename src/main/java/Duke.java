@@ -24,11 +24,17 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
 
         //local variables to keep track of
-        String command; //user command
-        String commandType; //lowercase command
         boolean exitFlag = false;
 
-        //duke level 1-1 greet, echo, exit
+        String command; //user command
+        String commandType; //lowercase command for duke to interpret
+
+        String taskList[]; //store up to 100 tasks for now
+        taskList = new String[100];
+        int numTasks = 0;
+
+        //duke level 1-2: add, list
+        //Add the ability to store whatever text entered by the user and display them back to the user when requested.
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
 
@@ -39,6 +45,15 @@ public class Duke {
             commandType = command.toLowerCase();
 
             switch(commandType) {
+                case "list": //list all tasks in duke
+                        System.out.println("--------------------------------------------------");
+                        for (int i = 0; i < numTasks; i++) {
+                            System.out.println((i + 1) + ". " + taskList[i]);
+                        }
+                        System.out.println("--------------------------------------------------");
+
+                    break;
+
                 case "bye": //quit the program
                     exitFlag = true;
                     System.out.println("--------------------------------------------------");
@@ -46,18 +61,19 @@ public class Duke {
                     System.out.println("--------------------------------------------------");
 
                     break;
+
                 default:
-                    //echo the input for now
+                    //add to task list and echo
+                    taskList[numTasks] = command;
+                    numTasks++;
+
                     System.out.println("--------------------------------------------------");
-                    System.out.println(command);
+                    System.out.println("added: " + command);
                     System.out.println("--------------------------------------------------");
 
                     break;
             }
-
         }
-
-
     }
 }
 
