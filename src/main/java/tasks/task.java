@@ -3,6 +3,7 @@ package tasks;
 public class task {
     protected String description;
     protected boolean isDone;
+    protected String type;
 
     public task(String description) {
         this.description = description;
@@ -10,7 +11,7 @@ public class task {
     }
 
     public void markDone() {
-        isDone = true;
+        this.isDone = true;
     }
 
     public String getStatusIcon() {
@@ -18,6 +19,12 @@ public class task {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
+    }
+
+    public String getType() { return this.type; }
+
+    public String getListInfo() {
+        return ("[T] [" + this.getStatusIcon() + "] " + this.getDescription());
     }
 }
