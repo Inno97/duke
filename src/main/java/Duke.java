@@ -6,12 +6,13 @@
 import java.io.*;
 import java.util.*;
 
+import common.dukeException;
 import tasks.*;
 import parser.*;
 import ui.*;
 
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws dukeException {
         //setup
         Scanner sc = new Scanner(System.in);
         textGUI ui = new textGUI();
@@ -22,8 +23,12 @@ public class Duke {
         //duke level 1-3: mark as done
         //Add the ability to mark tasks as done.
         while (!parser.getExitStatus()) {
-            input newInput = new input(sc.nextLine());
-            parser.parseInput(newInput);
+            try {
+                input newInput = new input(sc.nextLine());
+                parser.parseInput(newInput);
+            } catch (dukeException e) {
+                ui.printException(e.getMessage());
+            }
         }
     }
 }
