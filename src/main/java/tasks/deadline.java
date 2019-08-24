@@ -21,7 +21,7 @@ public class deadline extends task {
         String inputParsed[] = description.split(" ", 2);
         String inputParams[] = inputParsed[1].split(" /by ", 2);
 
-        if (inputParsed.length != 2 || inputParsed[1] == "") {
+        if (inputParsed.length != 2 || inputParsed[1] == "" || !inputParsed[1].contains("/by")) {
             throw new dukeException("Invalid Deadline format.");
         }
 
@@ -32,7 +32,7 @@ public class deadline extends task {
         this.description = inputParams[0];
         this.date = inputParams[1];
         this.isDone = false;
-        this.type = "event";
+        this.type = "deadline";
     }
 
     @Override
@@ -40,5 +40,7 @@ public class deadline extends task {
         return ("[D] [" + this.getStatusIcon() + "] " + this.description + " (by: " + this.date + ")");
     }
 
-
+    public String getDate() {
+        return this.date;
+    }
 }
