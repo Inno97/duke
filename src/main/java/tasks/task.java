@@ -1,8 +1,3 @@
-/**
- * task.java
- * base class for toDo, Deadline and Event class
- */
-
 package tasks;
 
 public class task {
@@ -18,8 +13,6 @@ public class task {
     public void markDone() {
         this.isDone = true;
     }
-
-    public Boolean getStatus() { return this.isDone; }
 
     public String getStatusIcon() {
         return (isDone ? "✓" : "✗"); //return tick or X symbols

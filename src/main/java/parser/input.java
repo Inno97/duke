@@ -2,7 +2,6 @@
  *  input.java
  *  handles the construction and parsing of inputs for duke
  */
-
 package parser;
 
 public class input {

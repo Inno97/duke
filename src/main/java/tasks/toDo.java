@@ -1,9 +1,3 @@
-/**
- * toDo.java
- * extension of task class
- * most basic type of item in duke
- */
-
 package tasks;
 
 public class toDo extends task{
