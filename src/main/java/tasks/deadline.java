@@ -12,7 +12,7 @@ import tasks.*;
 public class deadline extends task {
     //protected String description;
     //protected boolean isDone;
-    protected String date;
+    protected date date;
 
     public deadline(String description) throws dukeException {
         super(description);
@@ -30,17 +30,26 @@ public class deadline extends task {
         }
 
         this.description = inputParams[0];
-        this.date = inputParams[1];
+        this.date = new date(inputParams[1]);
         this.isDone = false;
         this.type = "deadline";
     }
 
     @Override
     public String getListInfo() {
-        return ("[D] [" + this.getStatusIcon() + "] " + this.description + " (by: " + this.date + ")");
+        return ("[D] [" + this.getStatusIcon() + "] " + this.description + " (by: " + this.getDateMonthDay() + ")");
     }
 
     public String getDate() {
-        return this.date;
+        return this.date.getDate();
+    }
+
+    //get date with correct formatting
+    public String getDateFormat() {
+        return this.date.getDateFormat();
+    }
+
+    public String getDateMonthDay() {
+        return this.date.getMonthDayFormat();
     }
 }
