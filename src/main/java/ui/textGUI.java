@@ -72,6 +72,14 @@ public class textGUI {
         System.out.println("--------------------------------------------------");
     }
 
+    public void printDelete(String description, int numTasksLeft) {
+        System.out.println("--------------------------------------------------");
+        System.out.println(" Noted. I've removed this task: ");
+        System.out.println("   " + description);
+        System.out.println("Now you have " + numTasksLeft + " tasks in the list.");
+        System.out.println("--------------------------------------------------");
+    }
+
     public void printExitProgram() {
         System.out.println("--------------------------------------------------");
         System.out.println("Bye. Hope to see you again soon!");

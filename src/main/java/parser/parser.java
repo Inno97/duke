@@ -45,6 +45,10 @@ public class parser {
                 markAsDone(newInput);
                 break;
 
+            case "delete":
+                deleteTask(newInput);
+                break;
+
             case "bye":
                 exitProgram();
                 break;
@@ -88,10 +92,13 @@ public class parser {
 
     private void markAsDone(input newInput) throws dukeException{
         if (newInput.getParam().equals("")) {
-            throw new dukeException("Please add in a number.");
+            throw new dukeException("Please enter a number.");
+        }
+        if (!newInput.getParam().matches("-?(0|[1-9]\\d*)")) {
+            throw new dukeException("Please enter a number");
         }
         if ((Integer.parseInt(newInput.getParam())) > numTasks) {
-            throw new dukeException("Out of bounds.");
+            throw new dukeException("Sorry, but that task does not exist.");
         }
         if (taskList.get(Integer.parseInt(newInput.getParam()) - 1).getStatus()) {
             throw new dukeException("Already marked as done.");
@@ -99,6 +106,23 @@ public class parser {
 
         taskList.get(Integer.parseInt(newInput.getParam()) - 1).markDone();
         ui.printMarkDone(taskList.get(Integer.parseInt(newInput.getParam()) - 1).getDescription());
+    }
+
+    private void deleteTask(input newInput) throws dukeException{
+        if (newInput.getParam().equals("")) {
+            throw new dukeException("Please enter a number.");
+        }
+        if (!newInput.getParam().matches("-?(0|[1-9]\\d*)")) {
+            throw new dukeException("Please enter a number");
+        }
+        if ((Integer.parseInt(newInput.getParam())) > numTasks) {
+            throw new dukeException("Sorry, but that task does not exist.");
+        }
+
+        String deltedTaskDesc = taskList.get((Integer.parseInt(newInput.getParam()) - 1)).getListInfo();
+        taskList.remove((Integer.parseInt(newInput.getParam()) - 1));
+        numTasks--;
+        ui.printDelete(deltedTaskDesc, numTasks);
     }
 
     private void exitProgram() {
