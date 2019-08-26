@@ -23,11 +23,18 @@ public class textGUI {
                 + " | | | | | | | |/ / _ \\\n"
                 + " | |_| | |_| |   <  __/\n"
                 + " |____/ \\__,_|_|\\_\\___|\n"
-                + "=================================================\n";
+                + "=================================================";
         //System.out.println("Hello from\n" + logo);
         System.out.println(logo);
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
+        System.out.println(" Hello! I'm Duke");
+        System.out.println(" What can I do for you?");
+    }
+
+    public void printNumTasks(int numTasks, int numCompleted) {
+        System.out.println("--------------------------------------------------");
+        System.out.println(" You currently have:");
+        System.out.println(" " + numTasks + " Tasks in Total and " + numCompleted + " Tasks Completed.");
+        System.out.println("--------------------------------------------------");
     }
 
     public void printTasks(ArrayList<task> taskList) {

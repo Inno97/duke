@@ -12,16 +12,15 @@ import parser.*;
 import ui.*;
 
 public class Duke {
-    public static void main(String[] args) throws dukeException {
+    public static void main(String[] args) throws dukeException, FileNotFoundException {
         //setup
-        Scanner sc = new Scanner(System.in);
         textGUI ui = new textGUI();
-        parser parser = new parser();
-
         ui.printWelcome();
 
-        //duke level 1-3: mark as done
-        //Add the ability to mark tasks as done.
+        Scanner sc = new Scanner(System.in);
+        parser parser = new parser();
+
+
         while (!parser.getExitStatus()) {
             try {
                 input newInput = new input(sc.nextLine());
@@ -30,5 +29,6 @@ public class Duke {
                 ui.printException(e.getMessage());
             }
         }
+
     }
 }

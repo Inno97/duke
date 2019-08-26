@@ -7,19 +7,32 @@
 package parser;
 
 import tasks.*;
+
+import java.io.FileNotFoundException;
 import java.util.*;
 import common.*;
 import ui.*;
+import storage.*;
 
 public class parser {
     private String input = "";
-    private ArrayList<task> taskList = new ArrayList<task>(0);
+    //private ArrayList<task> taskList = new ArrayList<task>(0);
+    private ArrayList<task> taskList;
+    private ArrayList<String> taskListStorage = new ArrayList<String>(0);
     private int numTasks = 0;
+    private int numTasksDone = 0;
     private boolean exitFlag = false;
+    private storage localStorage = new storage();
 
     private textGUI ui = new textGUI();
 
-    public parser() {
+    public parser() throws dukeException, FileNotFoundException {
+        taskList = localStorage.fetchStorage();
+        numTasks = taskList.size();
+        for (task i: taskList) {
+            if (i.getStatus()) numTasksDone++;
+        }
+        ui.printNumTasks(numTasks, numTasksDone);
     }
 
     //handle input
@@ -66,27 +79,35 @@ public class parser {
         ui.printTasks(taskList);
     }
 
-    private void addToDo(input newInput) {
+    private void addToDo(input newInput) throws dukeException {
         if (!newInput.getInput().equals("")) {
-            this.taskList.add(new toDo(newInput.getInput()));
+            taskList.add(new toDo(newInput.getInput()));
+            taskListStorage.add("T / 0 / " + newInput.getInput());
             numTasks++;
             ui.printAddToDo(taskList.get(numTasks - 1), numTasks);
+            localStorage.saveTaskList(taskList);
         }
     }
 
     private void addEvent(input newInput) throws dukeException {
         if (!newInput.getInput().equals("")) {
-            this.taskList.add(new event(newInput.getInput()));
+            event newEvent = new event(newInput.getInput());
+            taskList.add(newEvent);
+            taskListStorage.add("E / 0 / " + newEvent.getDescription() + " / " + newEvent.getDate());
             numTasks++;
             ui.printAddEvent(taskList.get(numTasks - 1), numTasks);
+            localStorage.saveTaskList(taskList);
         }
     }
 
     private void addDeadline(input newInput) throws dukeException{
         if (!newInput.getInput().equals("")) {
-            this.taskList.add(new deadline(newInput.getInput()));
+            deadline newDeadline = new deadline(newInput.getInput());
+            taskList.add(newDeadline);
+            taskListStorage.add("D / 0 / " + newDeadline.getDescription() + " / " + newDeadline.getDate());
             numTasks++;
             ui.printAddDeadline(taskList.get(numTasks - 1), numTasks);
+            localStorage.saveTaskList(taskList);
         }
     }
 
@@ -106,6 +127,8 @@ public class parser {
 
         taskList.get(Integer.parseInt(newInput.getParam()) - 1).markDone();
         ui.printMarkDone(taskList.get(Integer.parseInt(newInput.getParam()) - 1).getDescription());
+        localStorage.saveTaskList(taskList);
+        numTasksDone++;
     }
 
     private void deleteTask(input newInput) throws dukeException{
@@ -121,6 +144,7 @@ public class parser {
 
         String deltedTaskDesc = taskList.get((Integer.parseInt(newInput.getParam()) - 1)).getListInfo();
         taskList.remove((Integer.parseInt(newInput.getParam()) - 1));
+        localStorage.saveTaskList(taskList);
         numTasks--;
         ui.printDelete(deltedTaskDesc, numTasks);
     }
