@@ -1,7 +1,15 @@
+/**
+ * parser.java
+ * parser object to handle user input
+ * call constructor in Duke.java
+ */
+
 package parser;
 
 import tasks.*;
 import java.util.*;
+import common.*;
+import ui.*;
 
 public class parser {
     private String input = "";
@@ -9,24 +17,23 @@ public class parser {
     private int numTasks = 0;
     private boolean exitFlag = false;
 
+    private textGUI ui = new textGUI();
+
     public parser() {
     }
 
     //handle input
-    public void parseInput(input newInput) {
+    public void parseInput(input newInput) throws dukeException {
         switch(newInput.getCommand()) {
             case "todo":
-                //assign to toDo
                 addToDo(newInput);
                 break;
 
             case "event":
-                //assign to event
                 addEvent(newInput);
                 break;
 
             case "deadline":
-                //assign to deadline
                 addDeadline(newInput);
                 break;
 
@@ -43,7 +50,7 @@ public class parser {
                 break;
 
             default:
-                break;
+                throw new dukeException("I'm sorry, but I don't know what that means.");
         }
     }
 
@@ -52,96 +59,50 @@ public class parser {
     }
 
     private void printTasks() {
-        System.out.println("--------------------------------------------------");
-        System.out.println("Here are the tasks in your list:");
-        int taskIndex = 0;
-        for (task newTask : taskList) {
-            System.out.println((taskIndex + 1) + ". " + newTask.getListInfo());
-            taskIndex++;
-        }
-        System.out.println("--------------------------------------------------");
-    }
-
-    private void addTask(input newInput) {
-        if (!newInput.getInput().equals("")) {
-            this.taskList.add(new task(newInput.getInput()));
-            numTasks++;
-
-            System.out.println("--------------------------------------------------");
-            System.out.println("added: " + newInput.getInput());
-            System.out.println("--------------------------------------------------");
-        }
+        ui.printTasks(taskList);
     }
 
     private void addToDo(input newInput) {
         if (!newInput.getInput().equals("")) {
             this.taskList.add(new toDo(newInput.getInput()));
             numTasks++;
-
-            System.out.println("--------------------------------------------------");
-            System.out.println(" Got it. I've added this task: ");
-            System.out.println(" " + taskList.get(numTasks - 1).getDescription());
-            System.out.println(" Now you have " + numTasks + " tasks in the list.");
-            System.out.println("--------------------------------------------------");
+            ui.printAddToDo(taskList.get(numTasks - 1), numTasks);
         }
     }
 
-    private void addEvent(input newInput) {
+    private void addEvent(input newInput) throws dukeException {
         if (!newInput.getInput().equals("")) {
             this.taskList.add(new event(newInput.getInput()));
             numTasks++;
-
-            System.out.println("--------------------------------------------------");
-            System.out.println(" Got it. I've added this task: ");
-            System.out.println(" " + taskList.get(numTasks - 1).getDescription());
-            System.out.println(" Now you have " + numTasks + " tasks in the list.");
-            System.out.println("--------------------------------------------------");
+            ui.printAddEvent(taskList.get(numTasks - 1), numTasks);
         }
     }
 
-    private void addDeadline(input newInput) {
+    private void addDeadline(input newInput) throws dukeException{
         if (!newInput.getInput().equals("")) {
             this.taskList.add(new deadline(newInput.getInput()));
             numTasks++;
-
-            System.out.println("--------------------------------------------------");
-            System.out.println(" Got it. I've added this task: ");
-            System.out.println(" " + taskList.get(numTasks - 1).getDescription());
-            System.out.println(" Now you have " + numTasks + " tasks in the list.");
-            System.out.println("--------------------------------------------------");
+            ui.printAddDeadline(taskList.get(numTasks - 1), numTasks);
         }
     }
 
-    private void markAsDone(input newInput) {
-        if (!newInput.getParam().equals("")) {
-            if ((Integer.parseInt(newInput.getParam())) <= numTasks) {
-                taskList.get(Integer.parseInt(newInput.getParam()) - 1).markDone();
-
-                System.out.println("--------------------------------------------------");
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println("[✓] " + taskList.get(Integer.parseInt(newInput.getParam()) - 1).getDescription());
-                System.out.println("--------------------------------------------------");
-            } else { //factor in OOB
-                System.out.println("--------------------------------------------------");
-                System.out.println("Task does not exist.");
-                System.out.println("--------------------------------------------------");
-
-            }
-        } else { //empty query, we simply treat this as adding task for now
-            taskList.add(new task(newInput.getInput()));
-            numTasks++;
-
-            System.out.println("--------------------------------------------------");
-            System.out.println("added: " + newInput.getInput());
-            System.out.println("--------------------------------------------------");
+    private void markAsDone(input newInput) throws dukeException{
+        if (newInput.getParam().equals("")) {
+            throw new dukeException("Please add in a number.");
         }
+        if ((Integer.parseInt(newInput.getParam())) > numTasks) {
+            throw new dukeException("Out of bounds.");
+        }
+        if (taskList.get(Integer.parseInt(newInput.getParam()) - 1).getStatus()) {
+            throw new dukeException("Already marked as done.");
+        }
+
+        taskList.get(Integer.parseInt(newInput.getParam()) - 1).markDone();
+        ui.printMarkDone(taskList.get(Integer.parseInt(newInput.getParam()) - 1).getDescription());
     }
 
     private void exitProgram() {
         exitFlag = true;
-        System.out.println("--------------------------------------------------");
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println("--------------------------------------------------");
+        ui.printExitProgram();
     }
-
 }
