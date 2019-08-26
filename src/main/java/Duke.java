@@ -14,7 +14,7 @@ import ui.*;
 public class Duke {
     public static void main(String[] args) throws dukeException, FileNotFoundException {
         //setup
-        textGUI ui = new textGUI();
+        ui ui = new ui();
         ui.printWelcome();
 
         Scanner sc = new Scanner(System.in);

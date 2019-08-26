@@ -10,9 +10,9 @@ import tasks.task;
 
 import java.util.ArrayList;
 
-public class textGUI {
+public class ui {
 
-    public textGUI() {
+    public ui() {
     }
 
     public void printWelcome() {
