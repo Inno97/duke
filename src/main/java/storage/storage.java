@@ -9,8 +9,6 @@ package storage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-//import java.io.FileWriter;
-//import java.io.FileReader;
 import tasks.*;
 import parser.*;
 import common.*;
@@ -93,7 +91,7 @@ public class storage {
                         line = "E / " + (!newTask.getStatus() ? 0 : 1) + " / " + newTask.getDescription() + " / " + ((event) newTask).getDate();
                         break;
                     case "deadline":
-                        line = "D / " + (!newTask.getStatus() ? 0 : 1) + " / " + newTask.getDescription() + " / " + ((deadline) newTask).getDate();
+                        line = "D / " + (!newTask.getStatus() ? 0 : 1) + " / " + newTask.getDescription() + " / " + ((deadline) newTask).getDateFormat();
                         break;
                 }
 
@@ -103,19 +101,5 @@ public class storage {
         } catch (IOException e) {
             throw new dukeException("File not found: " + e.getMessage());
         }
-
     }
-
-        //FileWriter fw = new FileWriter(storagePath);
-
-        /*
-        try {
-            tasks = new TaskListAllTypes(storage.load());
-        } catch (DukeException e) {
-            ui.show(ui.MESSAGE_ERROR_READING_DATA_FILE);
-            tasks = new TaskListAllTypes();
-        }
-        */
-        //fw.write("Welcome to javaTpoint.");
-        //fw.close();
 }
