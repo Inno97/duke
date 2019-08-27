@@ -7,6 +7,7 @@
 package tasks;
 
 public class toDo extends task{
+    //inherited variables
     //protected String description;
     //protected boolean isDone;
 
@@ -17,7 +18,7 @@ public class toDo extends task{
 
         this.description = inputParsed[1];
         this.isDone = false;
-        this.type = "toDo";
+        this.type = Type.TODO;
     }
 
     @Override

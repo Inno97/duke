@@ -5,10 +5,14 @@
 
 package tasks;
 
+enum Type {
+    TODO, EVENT, DEADLINE;
+}
+
 public class task {
     protected String description;
     protected boolean isDone;
-    protected String type;
+    protected Type type;
 
     public task(String description) {
         this.description = description;
@@ -29,7 +33,7 @@ public class task {
         return this.description;
     }
 
-    public String getType() { return this.type; }
+    public String getType() { return this.type.toString(); }
 
     public String getListInfo() {
         return ("[T] [" + this.getStatusIcon() + "] " + this.getDescription());

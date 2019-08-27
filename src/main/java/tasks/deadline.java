@@ -10,8 +10,10 @@ import common.dukeException;
 import tasks.*;
 
 public class deadline extends task {
+    //inherited variables
     //protected String description;
     //protected boolean isDone;
+
     protected date date;
 
     public deadline(String description) throws dukeException {
@@ -32,7 +34,7 @@ public class deadline extends task {
         this.description = inputParams[0];
         this.date = new date(inputParams[1]);
         this.isDone = false;
-        this.type = "deadline";
+        this.type = Type.DEADLINE;
     }
 
     @Override

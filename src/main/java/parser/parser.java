@@ -11,37 +11,36 @@ public class parser {
     private ui ui = new ui();
 
     public parser() throws FileNotFoundException, dukeException {
-
     }
 
     //handle input
     public void parseInput(input newInput) throws dukeException {
         switch(newInput.getCommand()) {
-            case "todo":
+            case TODO:
                 taskList.addToDo(newInput);
                 break;
 
-            case "event":
+            case EVENT:
                 taskList.addEvent(newInput);
                 break;
 
-            case "deadline":
+            case DEADLINE:
                 taskList.addDeadline(newInput);
                 break;
 
-            case "list":
+            case LIST:
                 taskList.printTasks();
                 break;
 
-            case "done":
+            case DONE:
                 taskList.markAsDone(newInput);
                 break;
 
-            case "delete":
+            case DELETE:
                 taskList.deleteTask(newInput);
                 break;
 
-            case "bye":
+            case BYE:
                 exitProgram();
                 break;
 

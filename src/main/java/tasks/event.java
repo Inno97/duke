@@ -9,8 +9,10 @@ package tasks;
 import common.*;
 
 public class event extends task{
+    //inherited variables
     //protected String description;
     //protected boolean isDone;
+
     protected String date;
 
     public event(String description) throws dukeException {
@@ -31,7 +33,7 @@ public class event extends task{
         this.description = inputParams[0];
         this.date = inputParams[1];
         this.isDone = false;
-        this.type = "event";
+        this.type = Type.EVENT;
     }
 
     @Override
