@@ -88,7 +88,7 @@ public class storage {
                         line = "T / " + (!newTask.getStatus() ? 0 : 1) + " / " + newTask.getDescription();
                         break;
                     case "EVENT":
-                        line = "E / " + (!newTask.getStatus() ? 0 : 1) + " / " + newTask.getDescription() + " / " + ((event) newTask).getDate();
+                        line = "E / " + (!newTask.getStatus() ? 0 : 1) + " / " + newTask.getDescription() + " / " + ((event) newTask).getDateFormat();
                         break;
                     case "DEADLINE":
                         line = "D / " + (!newTask.getStatus() ? 0 : 1) + " / " + newTask.getDescription() + " / " + ((deadline) newTask).getDateFormat();

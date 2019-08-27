@@ -7,6 +7,8 @@
  */
 package tasks;
 
+import common.dukeException;
+
 public class date {
     private int day;
     private int month;
@@ -16,9 +18,18 @@ public class date {
     private String daySuffix;
     private String monthName;
 
-    public date(String date) {
+    public date(String date) throws dukeException {
         String inputParsed[] = date.split(" ", 2);
         String dateParsed[] = inputParsed[0].split("/", 3);
+
+        if (inputParsed.length != 2 || dateParsed.length != 3) {
+            throw new dukeException("Wrong date format");
+        }
+
+        if (!inputParsed[1].matches("-?(0|[1-9]\\d*)") || !dateParsed[0].matches("-?(0|[1-9]\\d*)") ||
+            !dateParsed[1].matches("-?(0|[1-9]\\d*)") || !dateParsed[2].matches("-?(0|[1-9]\\d*)")) {
+            throw new dukeException("Please only input numbers for dates.");
+        }
 
         day = Integer.parseInt(dateParsed[0]);
         month = Integer.parseInt(dateParsed[1]);
@@ -90,5 +101,9 @@ public class date {
 
     public String getMonthDayFormat() {
         return (monthName + " " + day + daySuffix);
+    }
+
+    public String getMonthDayTimeFormat() {
+        return (monthName + " " + day + daySuffix + " " + time);
     }
 }

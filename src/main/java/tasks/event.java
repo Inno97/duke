@@ -7,13 +7,14 @@
 package tasks;
 
 import common.*;
+import tasks.*;
 
 public class event extends task{
     //inherited variables
     //protected String description;
     //protected boolean  isDone;
 
-    protected String date;
+    protected date date;
 
     public event(String description) throws dukeException {
         super(description);
@@ -31,17 +32,25 @@ public class event extends task{
         }
 
         this.description = inputParams[0];
-        this.date = inputParams[1];
+        this.date = new date(inputParams[1]);
         this.isDone = false;
         this.type = Type.EVENT;
     }
 
     @Override
     public String getListInfo() {
-        return ("[E] [" + this.getStatusIcon() + "] " + this.description + " (at: " + this.date + ")");
+        return ("[E] [" + this.getStatusIcon() + "] " + this.description + " (at: " + this.getMonthDayTimeFormat() + ")");
     }
 
-    public String getDate() {
-        return this.date;
+    public String getDate() { return this.date.getDate(); }
+
+    public String getDateFormat() {
+        return this.date.getDateFormat();
     }
+
+    public String getDateMonthDay() {
+        return this.date.getMonthDayFormat();
+    }
+
+    public String getMonthDayTimeFormat() {return this.date.getMonthDayTimeFormat(); }
 }

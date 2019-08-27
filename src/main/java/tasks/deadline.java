@@ -39,7 +39,7 @@ public class deadline extends task {
 
     @Override
     public String getListInfo() {
-        return ("[D] [" + this.getStatusIcon() + "] " + this.description + " (by: " + this.getDateMonthDay() + ")");
+        return ("[D] [" + this.getStatusIcon() + "] " + this.description + " (by: " + this.getMonthDayTimeFormat() + ")");
     }
 
     public String getDate() {
@@ -54,4 +54,6 @@ public class deadline extends task {
     public String getDateMonthDay() {
         return this.date.getMonthDayFormat();
     }
+
+    public String getMonthDayTimeFormat() {return this.date.getMonthDayTimeFormat(); }
 }

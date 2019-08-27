@@ -20,7 +20,6 @@ public class input {
         this.input = inputString;
         String inputParsed[] = inputString.split(" ", 2);
         this.command = parseCommand(inputParsed[0]);
-        //this.command = (inputParsed[0]).toLowerCase();
 
         if (inputParsed.length == 1) {
             this.param = ""; //keep empty for now
