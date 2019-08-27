@@ -33,7 +33,9 @@ public class task {
         return this.description;
     }
 
-    public String getType() { return this.type.toString(); }
+    public String getType() {
+        return this.type.toString();
+    }
 
     public String getListInfo() {
         return ("[T] [" + this.getStatusIcon() + "] " + this.getDescription());

@@ -11,7 +11,7 @@ import common.*;
 public class event extends task{
     //inherited variables
     //protected String description;
-    //protected boolean isDone;
+    //protected boolean  isDone;
 
     protected String date;
 

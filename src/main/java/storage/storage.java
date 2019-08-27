@@ -83,14 +83,14 @@ public class storage {
             for (task newTask : taskList) {
                 String line = null;
 
-                switch(newTask.getType()) {
-                    case "toDo":
+                switch(newTask.getType().toString()) {
+                    case "TODO":
                         line = "T / " + (!newTask.getStatus() ? 0 : 1) + " / " + newTask.getDescription();
                         break;
-                    case "event":
+                    case "EVENT":
                         line = "E / " + (!newTask.getStatus() ? 0 : 1) + " / " + newTask.getDescription() + " / " + ((event) newTask).getDate();
                         break;
-                    case "deadline":
+                    case "DEADLINE":
                         line = "D / " + (!newTask.getStatus() ? 0 : 1) + " / " + newTask.getDescription() + " / " + ((deadline) newTask).getDateFormat();
                         break;
                 }
