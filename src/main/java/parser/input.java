@@ -6,7 +6,7 @@
 package parser;
 
 enum Command {
-    TODO, EVENT, DEADLINE, LIST, DONE, DELETE, BYE, UNKNOWN;
+    TODO, EVENT, DEADLINE, LIST, DONE, BYE, UNKNOWN;
 }
 
 public class input {
@@ -50,10 +50,6 @@ public class input {
 
             case "done":
                 command = Command.DONE;
-                break;
-
-            case "delete":
-                command = Command.DELETE;
                 break;
 
             case "bye":
