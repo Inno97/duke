@@ -37,6 +37,10 @@ public class taskList {
         ui.printTasks(taskList);
     }
 
+    public ArrayList<task> getTaskList() {
+        return taskList;
+    }
+
     public void addToDo(input newInput) throws dukeException {
         if (!newInput.getInput().equals("")) {
             taskList.add(new toDo(newInput.getInput()));

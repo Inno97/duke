@@ -6,7 +6,7 @@
 package parser;
 
 enum Command {
-    TODO, EVENT, DEADLINE, LIST, DONE, BYE, UNKNOWN;
+    TODO, EVENT, DEADLINE, LIST, DONE, FIND, BYE, UNKNOWN;
 }
 
 public class input {
@@ -52,9 +52,14 @@ public class input {
                 command = Command.DONE;
                 break;
 
+            case "find":
+                command = Command.FIND;
+                break;
+
             case "bye":
                 command = Command.BYE;
                 break;
+
             default:
                 command = Command.UNKNOWN;
                 break;

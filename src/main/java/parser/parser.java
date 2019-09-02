@@ -2,6 +2,7 @@ package parser;
 
 import common.*;
 import ui.*;
+import storage.*;
 
 import java.io.FileNotFoundException;
 
@@ -9,6 +10,7 @@ public class parser {
     private taskList taskList = new taskList();
     private boolean exitFlag = false;
     private ui ui = new ui();
+    private searchEngine searchEngine = new searchEngine();
 
     public parser() throws FileNotFoundException, dukeException {
     }
@@ -34,6 +36,10 @@ public class parser {
 
             case DONE:
                 taskList.markAsDone(newInput);
+                break;
+
+            case FIND:
+                searchEngine.searchForTasks(taskList, newInput);
                 break;
 
             case BYE:
