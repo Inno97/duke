@@ -79,6 +79,21 @@ public class ui {
         System.out.println("--------------------------------------------------");
     }
 
+    public void printSearchResults(ArrayList<task> searchList) {
+        System.out.println("--------------------------------------------------");
+        System.out.println(" Here are the matching tasks in your list:");
+        if (searchList.size() != 0) {
+            int taskIndex = 0;
+            for (task newTask : searchList) {
+                System.out.println((taskIndex + 1) + ". " + newTask.getListInfo());
+                taskIndex++;
+            }
+        } else {
+            System.out.println("There are no matching tasks in your list.");
+        }
+        System.out.println("--------------------------------------------------");
+    }
+
     public void printDelete(String description, int numTasksLeft) {
         System.out.println("--------------------------------------------------");
         System.out.println(" Noted. I've removed this task: ");
