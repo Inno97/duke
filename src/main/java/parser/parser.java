@@ -36,6 +36,10 @@ public class parser {
                 taskList.markAsDone(newInput);
                 break;
 
+            case DELETE:
+                taskList.deleteTask(newInput);
+                break;
+
             case BYE:
                 exitProgram();
                 break;

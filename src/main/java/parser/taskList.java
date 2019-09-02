@@ -89,4 +89,21 @@ public class taskList {
         numTasksDone++;
     }
 
+    public void deleteTask(input newInput) throws dukeException{
+        if (newInput.getParam().equals("")) {
+            throw new dukeException("Please enter a number.");
+        }
+        if (!newInput.getParam().matches("-?(0|[1-9]\\d*)")) {
+            throw new dukeException("Please enter a number");
+        }
+        if ((Integer.parseInt(newInput.getParam())) > numTasks || (Integer.parseInt(newInput.getParam()) <= 0)) {
+            throw new dukeException("Sorry, but that task does not exist.");
+        }
+
+        String deletedTaskDesc = taskList.get((Integer.parseInt(newInput.getParam()) - 1)).getListInfo();
+        taskList.remove((Integer.parseInt(newInput.getParam()) - 1));
+        localStorage.saveTaskList(taskList);
+        numTasks--;
+        ui.printDelete(deletedTaskDesc, numTasks);
+    }
 }
