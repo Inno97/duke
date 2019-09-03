@@ -24,6 +24,8 @@ public class taskList {
     private storage localStorage = new storage();
     private ui ui = new ui();
 
+    private String dukeMessage = null; //return message that duke is supposed to send
+
     public taskList() throws dukeException, FileNotFoundException {
         taskList = localStorage.fetchStorage();
         numTasks = taskList.size();
@@ -41,13 +43,28 @@ public class taskList {
         return taskList;
     }
 
+    private void setDukeMessage(String message) { dukeMessage = message; }
+
+    private void resetDukeMessage() { dukeMessage = ""; }
+
+    public String getDukeMessage() {
+        String message = dukeMessage;
+        resetDukeMessage();
+        return message;
+    }
+
+    public void getTasks() {
+        dukeMessage = ui.getTasks(taskList);
+    }
+
     public void addToDo(input newInput) throws dukeException {
         if (!newInput.getInput().equals("")) {
             taskList.add(new toDo(newInput.getInput()));
             taskListStorage.add("T / 0 / " + newInput.getInput());
             numTasks++;
-            ui.printAddToDo(taskList.get(numTasks - 1), numTasks);
+            //ui.printAddToDo(taskList.get(numTasks - 1), numTasks);
             localStorage.saveTaskList(taskList);
+            setDukeMessage(ui.getAddToDo(taskList.get(numTasks - 1), numTasks));
         }
     }
 
@@ -57,8 +74,9 @@ public class taskList {
             taskList.add(newEvent);
             taskListStorage.add("E / 0 / " + newEvent.getDescription() + " / " + newEvent.getDate());
             numTasks++;
-            ui.printAddEvent(taskList.get(numTasks - 1), numTasks);
+            //ui.printAddEvent(taskList.get(numTasks - 1), numTasks);
             localStorage.saveTaskList(taskList);
+            setDukeMessage(ui.getAddEvent(taskList.get(numTasks - 1), numTasks));
         }
     }
 
@@ -68,8 +86,9 @@ public class taskList {
             taskList.add(newDeadline);
             taskListStorage.add("D / 0 / " + newDeadline.getDescription() + " / " + newDeadline.getDate());
             numTasks++;
-            ui.printAddDeadline(taskList.get(numTasks - 1), numTasks);
+            //ui.printAddDeadline(taskList.get(numTasks - 1), numTasks);
             localStorage.saveTaskList(taskList);
+            setDukeMessage(ui.getAddDeadline(taskList.get(numTasks - 1), numTasks));
         }
     }
 
@@ -88,9 +107,10 @@ public class taskList {
         }
 
         taskList.get(Integer.parseInt(newInput.getParam()) - 1).markDone();
-        ui.printMarkDone(taskList.get(Integer.parseInt(newInput.getParam()) - 1).getDescription());
+        //ui.printMarkDone(taskList.get(Integer.parseInt(newInput.getParam()) - 1).getDescription());
         localStorage.saveTaskList(taskList);
         numTasksDone++;
+        setDukeMessage(ui.getMarkDone(taskList.get(Integer.parseInt(newInput.getParam()) - 1).getDescription()));
     }
 
     public void deleteTask(input newInput) throws dukeException{
@@ -108,6 +128,7 @@ public class taskList {
         taskList.remove((Integer.parseInt(newInput.getParam()) - 1));
         localStorage.saveTaskList(taskList);
         numTasks--;
-        ui.printDelete(deletedTaskDesc, numTasks);
+        //ui.printDelete(deletedTaskDesc, numTasks);
+        setDukeMessage(ui.getDelete(deletedTaskDesc, numTasks));
     }
 }

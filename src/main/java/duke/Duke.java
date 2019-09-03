@@ -13,29 +13,32 @@ import tasks.*;
 import parser.*;
 import ui.*;
 
-import javaFx.MainWindow;
-
 public class Duke {
-    public static void main(String[] args) throws dukeException, FileNotFoundException {
-        //setup
-        ui ui = new ui();
+    private ui ui = new ui();
+    private Scanner sc = new Scanner(System.in);
+    private parser parser = new parser();
+
+    private String dukeMessage = null;
+
+    public Duke() throws FileNotFoundException, dukeException {
         ui.printWelcome();
-
-        Scanner sc = new Scanner(System.in);
-        parser parser = new parser();
-
-        while (!parser.getExitStatus()) {
-            try {
-                input newInput = new input(sc.nextLine());
-                parser.parseInput(newInput);
-            } catch (dukeException e) {
-                ui.printException(e.getMessage());
-            }
-        }
     }
 
-    public String getResponse(String input) {
-        return input;
-        //return "Duke heard: " + input;
+    public String getWelcome() {
+        return ui.getWelcome();
+    }
+
+    public String getResponse(String input) throws dukeException {
+        try {
+            input newInput = new input(input);
+            parser.parseInput(newInput);
+            dukeMessage = parser.getDukeMessage();
+            System.out.println("response success");
+            System.out.println(dukeMessage);
+        } catch (dukeException e) {
+            ui.printException(e.getMessage());
+        }
+
+        return dukeMessage;
     }
 }

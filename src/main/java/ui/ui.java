@@ -113,4 +113,123 @@ public class ui {
         System.out.println(message);
         System.out.println("--------------------------------------------------");
     }
+
+    public String getWelcome() {
+        String message = "==================================\n"
+                + "  ____        _        \n"
+                + " |    _ \\  _    _| | _____ \n"
+                + " |  | |  |  | |  | |/ / _ \\\n"
+                + " |  |_|  |  |_|  |   <  __/\n"
+                + " |____/ \\ __,_|_|\\_\\___|\n"
+                + "==================================\n"
+                + " Hello! I'm Duke\n"
+                + " What can I do for you?";
+        return message;
+    }
+
+    public String getNumTasks(int numTasks, int numCompleted) {
+        String message = "----------------------------------\n"
+                + " You currently have:\n"
+                + " " + numTasks + " Tasks in Total and " + numCompleted + " Tasks Completed.\n"
+                + "----------------------------------";
+        return message;
+    }
+
+    public String getTasks(ArrayList<task> taskList) {
+        String message = "--------------------------------------------------\n"
+                + "Here are the tasks in your list:\n";
+
+        int taskIndex = 0;
+        for (task newTask : taskList) {
+            message += (" " + (taskIndex + 1) + ". " + newTask.getListInfo() + "\n");
+            taskIndex++;
+        }
+
+        message += "--------------------------------------------------";
+        return message;
+    }
+
+    public String getAddToDo(task newTask, int numTasks) {
+        String message = "--------------------------------------------------\n"
+                + " Got it. I've added this Todo: \n"
+                + " " + newTask.getDescription() + "\n"
+                + " Now you have " + numTasks + " tasks in the list.\n"
+                + "--------------------------------------------------";
+        return message;
+    }
+
+    public String getAddEvent(task newTask, int numTasks) {
+        String message = "--------------------------------------------------\n"
+                + " Got it. I've added this Event: \n"
+                + " " + newTask.getDescription() + "\n"
+                + " Now you have " + numTasks + " tasks in the list.\n"
+                + "--------------------------------------------------";
+        return message;
+    }
+
+    public String getAddDeadline(task newTask, int numTasks) {
+        String message = "--------------------------------------------------\n"
+                + " Got it. I've added this Deadline: \n"
+                + " " + newTask.getDescription() + "\n"
+                + " Now you have " + numTasks + " tasks in the list.\n"
+                + "--------------------------------------------------";
+        return message;
+    }
+
+    public String getMarkDone(String description) {
+        String message = "--------------------------------------------------\n"
+                + "Nice! I've marked this task as done:\n"
+                + "[✓] " + description + "\n"
+                + "--------------------------------------------------";
+        return message;
+    }
+
+    public String getSearchResults(ArrayList<task> searchList) {
+        String message = "--------------------------------------------------\n"
+                + " Here are the matching tasks in your list:\n";
+
+        if (searchList.size() != 0) {
+            int taskIndex = 0;
+            for (task newTask : searchList) {
+                message += (" " + (taskIndex + 1) + ". " + newTask.getListInfo() + "\n");
+                taskIndex++;
+            }
+        } else {
+            message += "There are no matching tasks in your list.\n";
+        }
+
+        message += "--------------------------------------------------";
+        return message;
+    }
+
+    public String getDelete(String description, int numTasksLeft) {
+        String message = "--------------------------------------------------\n"
+                + " Noted. I've removed this task: \n"
+                + "   " + description + "\n"
+                + "Now you have " + numTasksLeft + " tasks in the list.\n"
+                + "--------------------------------------------------";
+        return message;
+    }
+
+    public String getExitProgram() {
+        String message = "--------------------------------------------------\n"
+                + "Bye. Hope to see you again soon!\n"
+                + "--------------------------------------------------";
+        return message;
+    }
+
+    public String getException(String error) {
+        String message = "--------------------------------------------------\n"
+                + error + "\n"
+                + "--------------------------------------------------";
+        return message;
+    }
+
+    public String getError() {
+        String message = "--------------------------------------------------\n"
+                + "There's an issue that caused the action to fail."
+                + "Please try again..."
+                + "--------------------------------------------------";
+        return message;
+    }
 }

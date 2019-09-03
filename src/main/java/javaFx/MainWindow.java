@@ -1,5 +1,6 @@
 package javaFx;
 
+import common.dukeException;
 import duke.*;
 
 import javafx.fxml.FXML;
@@ -36,6 +37,7 @@ public class MainWindow extends AnchorPane {
 
     public void setDuke(Duke d) {
         duke = d;
+        getWelcome();
     }
 
     /**
@@ -43,16 +45,23 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() {
+    private void handleUserInput() throws dukeException {
         String input = userInput.getText();
         String response = duke.getResponse(input);
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
-
         );
 
         userInput.clear();
+    }
+
+    public void getWelcome() {
+        String welcomeMessage = duke.getWelcome();
+
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(welcomeMessage, dukeImage)
+        );
     }
 }
