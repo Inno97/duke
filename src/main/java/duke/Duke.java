@@ -13,6 +13,10 @@ import tasks.*;
 import parser.*;
 import ui.*;
 
+/**
+ * The Duke class
+ *
+ */
 public class Duke {
     private ui ui = new ui();
     private Scanner sc = new Scanner(System.in);
@@ -21,7 +25,7 @@ public class Duke {
     private String dukeMessage = null;
 
     public Duke() throws FileNotFoundException, dukeException {
-        ui.printWelcome();
+        //ui.printWelcome();
     }
 
     public String getWelcome() {
