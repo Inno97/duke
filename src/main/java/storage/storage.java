@@ -13,6 +13,10 @@ import tasks.*;
 import parser.*;
 import common.*;
 
+/**
+ * the storage class
+ * handles all local memory storage and manipulation
+ */
 public class storage {
     private static final String storagePath = "data/tasks.txt";
     private FileReader reader = null;
@@ -26,7 +30,9 @@ public class storage {
         }
     }
 
-    //fetch and parse data into local taskList
+    /**
+     * fetch and parse data into local taskList
+     */
     public ArrayList<task> fetchStorage() throws dukeException, FileNotFoundException {
         ArrayList<String> data = fetchData();
         ArrayList<task> taskList = parseData(data);
@@ -34,7 +40,11 @@ public class storage {
         return taskList;
     }
 
-    //fetch data from local files
+    /**
+     * fetch data from local files
+     * @return data the data from local files
+     * @throws FileNotFoundException the exception thrown when the file cannot be found
+     */
     private ArrayList<String> fetchData() throws FileNotFoundException {
         File f = new File(storagePath);
         Scanner sc = new Scanner(f);
@@ -47,6 +57,12 @@ public class storage {
         return data;
     }
 
+    /**
+     * Splits the text fetched from local data storage format
+     * @param data the data fetched by the storage class
+     * @return taskList Duke's current task list
+     * @throws dukeException the exception that Duke throws
+     */
     private ArrayList<task> parseData(ArrayList<String> data) throws dukeException {
         ArrayList<task> taskList = new ArrayList<task>();
 
@@ -76,6 +92,11 @@ public class storage {
         return taskList;
     }
 
+    /**
+     * Saves Duke's task list to local storage
+     * @param taskList Duke's task list
+     * @throws dukeException the exception that Duke throws
+     */
     public void saveTaskList(ArrayList<task> taskList) throws dukeException {
         File file = new File(storagePath);
         try {

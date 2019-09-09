@@ -31,6 +31,11 @@ public class input {
         }
     }
 
+    /**
+     * Parses the input and assigns appropriate input command type
+     * @param input the input string
+     * @return command the command of the input
+     */
     private Command parseCommand (String input) {
         Command command;
 
@@ -75,21 +80,41 @@ public class input {
         return command;
     }
 
+    /**
+     * Sets the input of the input object
+     * @param input the input to set to
+     */
     public void setInput(String input) {
         this.input = input;
     }
 
+    /**
+     * Sets the parameters of the input object
+     * @param input the parameter to set to
+     */
     public void setParam(String input) {
         this.param = input;
     }
 
+    /**
+     * Gets the input of the input object
+     * @return input the input of the object
+     */
     public String getInput() {
         return this.input;
     }
 
+    /**
+     * Gets the type of command of the input
+     * @return command the type of command of the input
+     */
     public Command getCommand() {
         return this.command;
     }
 
+    /**
+     * Gets the parameter of the input
+     * @return param the parameter of the input
+     */
     public String getParam() { return this.param; }
 }

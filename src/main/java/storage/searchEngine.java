@@ -11,7 +11,10 @@ import tasks.*;
 import java.util.ArrayList;
 import ui.*;
 
-
+/**
+ * the search engine class
+ * handles searching using the "find" command
+ */
 public class searchEngine {
     private ArrayList<String> searchedList = null;
     private ui ui = new ui();
@@ -20,6 +23,11 @@ public class searchEngine {
     public searchEngine() {
     }
 
+    /**
+     * Searches for tasks and updates the searched list
+     * @param taskList the current task list of Duke
+     * @param query the query keyword to find
+     */
     public void searchForTasks(taskList taskList, input query) {
         String queryString = query.getParam();
         ArrayList<task> searchList = new ArrayList<task>(0);
@@ -28,6 +36,12 @@ public class searchEngine {
         searchMessage = ui.getSearchResults(searchList);
     }
 
+    /**
+     * Finds all items in task list with query
+     * @param taskList the task list of Duke
+     * @param query the query keyword to find
+     * @return the search list for Duke to use
+     */
     private ArrayList<task> populateSearchList(ArrayList<task> taskList, String query) {
         ArrayList<task> searchList = new ArrayList<task>(0);
         for (task i: taskList) {
@@ -39,6 +53,10 @@ public class searchEngine {
         return searchList;
     }
 
+    /**
+     * Gets the message that Duke should show
+     * @return message the message that Duke should show
+     */
     public String getSearchMessage() {
         return searchMessage;
     }

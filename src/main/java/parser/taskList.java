@@ -14,6 +14,10 @@ import common.*;
 import ui.*;
 import storage.*;
 
+/**
+ * the task list class
+ * handles the entire task list and can manipulate and grab information
+ */
 public class taskList {
     private String input = "";
     private ArrayList<task> taskList;
@@ -35,32 +39,62 @@ public class taskList {
         ui.printNumTasks(numTasks, numTasksDone);
     }
 
+    /**
+     * Prints the tasks in Duke
+     */
     public void printTasks() {
         ui.printTasks(taskList);
     }
 
+    /**
+     * Gets the entire task list
+     * @return taskList the task list
+     */
     public ArrayList<task> getTaskList() {
         return taskList;
     }
 
+    /**
+     * Gets the size of the Array List of Duke
+     * @return size the size of array list
+     */
     public int getSize() {
         return taskList.size();
     }
 
+    /**
+     * Sets Duke's message
+     * @param message the message to set
+     */
     private void setDukeMessage(String message) { dukeMessage = message; }
 
+    /**
+     * Reset's Duke's message
+     */
     private void resetDukeMessage() { dukeMessage = ""; }
 
+    /**
+     * Gets Duke's message to print for GUI
+     * @return message the message to print in GUI
+     */
     public String getDukeMessage() {
         String message = dukeMessage;
         resetDukeMessage();
         return message;
     }
 
+    /**
+     * Gets the Duke message containing the task list contents
+     */
     public void getTasks() {
         dukeMessage = ui.getTasks(taskList);
     }
 
+    /**
+     * Gets Duke to add a To Do item
+     * @param newInput the new input
+     * @throws dukeException the exception that Duke throws
+     */
     public void addToDo(input newInput) throws dukeException {
         if (!newInput.getInput().equals("")) {
             taskList.add(new toDo(newInput.getInput()));
@@ -72,6 +106,11 @@ public class taskList {
         }
     }
 
+    /**
+     * Gets Duke to add an Event item
+     * @param newInput the new input
+     * @throws dukeException the exception that Duke throws
+     */
     public void addEvent(input newInput) throws dukeException {
         if (!newInput.getInput().equals("")) {
             event newEvent = new event(newInput.getInput());
@@ -84,6 +123,11 @@ public class taskList {
         }
     }
 
+    /**
+     * Gets Duke to add a Deadline item
+     * @param newInput the new input
+     * @throws dukeException the exception that Duke throws
+     */
     public void addDeadline(input newInput) throws dukeException{
         if (!newInput.getInput().equals("")) {
             deadline newDeadline = new deadline(newInput.getInput());
@@ -96,6 +140,11 @@ public class taskList {
         }
     }
 
+    /**
+     * Gets Duke to mark an item as done
+     * @param newInput the index of the item to mark (starting from 1)
+     * @throws dukeException the exception that Duke throws
+     */
     public void markAsDone(input newInput) throws dukeException{
         if (newInput.getParam().equals("")) {
             throw new dukeException("Please enter a number.");
@@ -117,6 +166,11 @@ public class taskList {
         setDukeMessage(ui.getMarkDone(taskList.get(Integer.parseInt(newInput.getParam()) - 1).getDescription()));
     }
 
+    /**
+     * Gets Duke to delete an item
+     * @param newInput the index of the item to be deleted (starting from 0)
+     * @throws dukeException the exception that Duke throws
+     */
     public void deleteTask(input newInput) throws dukeException{
         if (newInput.getParam().equals("")) {
             throw new dukeException("Please enter a number.");

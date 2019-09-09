@@ -26,7 +26,6 @@ public class Duke {
     private String dukeMessage = null;
 
     public Duke() throws FileNotFoundException, dukeException {
-        //ui.printWelcome();
     }
 
     public String getWelcome() {

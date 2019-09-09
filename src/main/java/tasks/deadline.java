@@ -9,6 +9,10 @@ package tasks;
 import common.dukeException;
 import tasks.*;
 
+/**
+ * the deadline class
+ * deadlines have to have a date
+ */
 public class deadline extends task {
     //inherited variables
     //protected String description;
@@ -37,23 +41,43 @@ public class deadline extends task {
         this.type = Type.DEADLINE;
     }
 
+    /**
+     * Gets the information to list
+     * @return listInfo the list info to print
+     */
     @Override
     public String getListInfo() {
         return ("[D] [" + this.getStatusIcon() + "] " + this.description + " (by: " + this.getMonthDayTimeFormat() + ")");
     }
 
+    /**
+     * Gets the date of the deadline
+     * @return date the date of the deadline
+     */
     public String getDate() {
         return this.date.getDate();
     }
 
-    //get date with correct formatting
+
+    /**
+     * Gets date with date format
+     * @return date the date of the dateline with date format
+     */
     public String getDateFormat() {
         return this.date.getDateFormat();
     }
 
+    /**
+     * Gets date with the date month day format
+     * @return date the date in the date month day format
+     */
     public String getDateMonthDay() {
         return this.date.getMonthDayFormat();
     }
 
+    /**
+     * Gets date with the month day time format
+     * @return date the date in month day time format
+     */
     public String getMonthDayTimeFormat() {return this.date.getMonthDayTimeFormat(); }
 }

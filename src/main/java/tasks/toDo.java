@@ -6,6 +6,10 @@
 
 package tasks;
 
+/**
+ * the To Do class
+ * basic item that can be added
+ */
 public class toDo extends task{
     //inherited variables
     //protected String description;
@@ -21,6 +25,10 @@ public class toDo extends task{
         this.type = Type.TODO;
     }
 
+    /**
+     * Gets the information to list
+     * @return listInfo the list info to print
+     */
     @Override
     public String getListInfo() {
         return ("[T] [" + this.getStatusIcon() + "] " + this.description);

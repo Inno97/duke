@@ -9,6 +9,10 @@ package tasks;
 
 import common.dukeException;
 
+/**
+ * the date class
+ * automatic conversion of date
+ */
 public class date {
     private int day;
     private int month;
@@ -91,18 +95,34 @@ public class date {
         }
     }
 
+    /**
+     * Gets the date in DD/MM/YY format
+     * @return date the date in DD/MM/YY format
+     */
     public String getDate() {
         return (day + "/" + month + "/" + year);
     }
 
+    /**
+     * Gets the date in DD/MM/YY TIME format
+     * @return date the date in DD/MM/YY TIME format
+     */
     public String getDateFormat() {
         return (day + "/" + month + "/" + year + " " + time);
     }
 
+    /**
+     * Gets the date in monthName day daySuffix format
+     * @return date the date in monthName day daySuffix format
+     */
     public String getMonthDayFormat() {
         return (monthName + " " + day + daySuffix);
     }
 
+    /**
+     * Gets the date in monthName day daySuffix time format
+     * @return date the date in monthName day daySuffix time format
+     */
     public String getMonthDayTimeFormat() {
         return (monthName + " " + day + daySuffix + " " + time);
     }
