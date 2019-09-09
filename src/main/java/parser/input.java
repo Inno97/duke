@@ -9,9 +9,12 @@ enum Command {
     TODO, EVENT, DEADLINE, LIST, DONE, FIND, DELETE, BYE, UNKNOWN;
 }
 
+/**
+ * the input class
+ * Handles 
+ */
 public class input {
     protected String input;
-    //protected String command;
     protected String param;
     protected Command command;
 

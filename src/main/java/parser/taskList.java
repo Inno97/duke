@@ -43,6 +43,10 @@ public class taskList {
         return taskList;
     }
 
+    public int getSize() {
+        return taskList.size();
+    }
+
     private void setDukeMessage(String message) { dukeMessage = message; }
 
     private void resetDukeMessage() { dukeMessage = ""; }

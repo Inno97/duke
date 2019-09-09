@@ -20,6 +20,10 @@ public class Main extends Application {
     public Main() throws FileNotFoundException, dukeException {
     }
 
+    /**
+     * starts duke GUI
+     * @param stage
+     */
     @Override
     public void start(Stage stage) {
         System.out.println("Starting Duke...");
@@ -36,6 +40,10 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * stops the GUI
+     * @throws Exception
+     */
     @Override
     public void stop() throws Exception {
         super.stop();

@@ -15,6 +15,7 @@ import ui.*;
 public class searchEngine {
     private ArrayList<String> searchedList = null;
     private ui ui = new ui();
+    private String searchMessage = null;
 
     public searchEngine() {
     }
@@ -24,6 +25,7 @@ public class searchEngine {
         ArrayList<task> searchList = new ArrayList<task>(0);
         searchList = populateSearchList(taskList.getTaskList(), query.getParam());
         ui.printSearchResults(searchList);
+        searchMessage = ui.getSearchResults(searchList);
     }
 
     private ArrayList<task> populateSearchList(ArrayList<task> taskList, String query) {
@@ -35,5 +37,9 @@ public class searchEngine {
         }
 
         return searchList;
+    }
+
+    public String getSearchMessage() {
+        return searchMessage;
     }
 }
